@@ -48,12 +48,12 @@ func Thermals() map[string]float64 {
 				if e != nil {
 					continue
 				}
-				rb := []byte{}
+				rb := make([]byte, 10)
 				rbl, errrbl := f.Read(rb)
 				if errrbl != nil || rbl == 0 {
 					continue
 				}
-				thv, errthv := strconv.ParseFloat(string(rb), 64)
+				thv, errthv := strconv.ParseFloat(string(rb[0:rbl-1]), 64)
 				if errthv != nil {
 					continue
 				}
